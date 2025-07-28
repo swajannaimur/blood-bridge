@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Components/Contexts/AuthContext';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import Lottie from 'lottie-react';
 const Login = () => {
     const { signIn } = use(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleLogin = e => {
         e.preventDefault();

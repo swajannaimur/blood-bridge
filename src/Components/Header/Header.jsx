@@ -20,15 +20,78 @@ const Header = () => {
             });
     };
 
+    const links = (
+        <>
+            <li><NavLink to="/" className="text-primary lg:text-lg font-bold">Home</NavLink></li>
+            <li><NavLink to="/dashboard" className="text-primary lg:text-lg font-bold">Dashboard</NavLink></li>
+            <li><NavLink to="/create-donation-request" className="text-primary lg:text-lg font-bold">Create Donation Request</NavLink></li>
+            <li><NavLink to="/donation-requests" className="text-primary lg:text-lg font-bold">My Donation Requests</NavLink></li>
+        </>
+    );
+
     return (
-        <div className='shadow-sm'>
-            <div className="navbar max-w-11/12 mx-auto py-4">
-                <div className="flex-1">
-                    <NavLink to='/'>
-                        <img src='https://img.icons8.com/?size=100&id=vurh7-um5eMM&format=png&color=e63946' className='h-12 w-auto' />
-                    </NavLink>
+        <div className='max-w-[95%] mx-auto px-4 shadow-sm'>
+            <div className="navbar  lg:flex lg:justify-between lg:items-center">
+                {/* Start Section (Mobile & Logo) */}
+                <div className="flex justify-between items-center w-full lg:w-auto">
+
+                    {/* Mobile Menu */}
+                    <div className="dropdown lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </div>
+
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-box w-52">
+                            {
+                                user ? (
+                                    <>
+                                      {links}
+                                    </>
+                                ) : (
+                                    <>
+                                        <li><Link to="/login">Login</Link></li>
+                                        <li><Link to="/register">Register</Link></li>
+                                    </>
+                                )
+                            }
+                        </ul>
+                    </div>
+
+                    {/* Logo */}
+                    <Link to='/' className='flex items-center gap-2'>
+                        <img src='https://img.icons8.com/?size=100&id=vurh7-um5eMM&format=png&color=e63946' className='w-10' />
+                        <span className='text-2xl hidden lg:block font-bold'>Blood-Bridge</span>
+                    </Link>
                 </div>
-                <div className="">
+
+                {/* Center Menu */}
+                <div className="hidden lg:flex lg:justify-center">
+                    <ul className="menu menu-horizontal px-1">
+                        {links}
+                    </ul>
+                </div>
+
+                {/* End Section*/}
+                <div className="hidden lg:flex lg:justify-end lg:items-center space-x-2">
+                  
+                  {/* Dark mode theme */}
+                    {/* <div>
+                        <input
+                            type="checkbox"
+                            value="dark"
+                            className="toggle theme-controller mr-2"
+                            checked={theme === "dark"}
+                            onChange={handleThemeChange}
+                        />
+                        <span className='text-md text-primary font-bold'>
+                            {theme === 'dark' ? 'Light' : 'Dark'}
+                        </span>
+                    </div> */}
+
                     {
                         user ? (
                             <div className="dropdown dropdown-end">
@@ -43,6 +106,7 @@ const Header = () => {
                                 <ul
                                     tabIndex={0}
                                     className="mt-3 z-[1] p-2 border shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-box w-64">
+
                                     <li>
                                         <button onClick={handleSignOut} className="btn btn-secondary text-white w-full mt-2">Logout</button>
                                     </li>
@@ -51,7 +115,7 @@ const Header = () => {
                         ) : (
                             <>
                                 <Link to="/login">
-                                    <button className="btn btn-primary font-bold mx-4">Login</button>
+                                    <button className="btn btn-primary font-bold">Login</button>
                                 </Link>
                                 <Link to="/register">
                                     <button className="btn btn-secondary font-bold">Register</button>

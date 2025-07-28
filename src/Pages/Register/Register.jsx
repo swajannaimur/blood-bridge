@@ -8,12 +8,14 @@ import { AuthContext } from '../../Components/Contexts/AuthContext';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import useAxiosPublic from '../../Hooks/axiosPublic';
 
 const Register = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('')
     const [selectedUpozila, setSelectedUpozila] = useState('')
     const { createUser } = use(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const filteredUpozilas = upozilas.filter((upozila) => {
         const district = districts.find(district => district.name === selectedDistrict);
@@ -51,12 +53,12 @@ const Register = () => {
         // }
 
         if (password !== confirmPassword) {
-            toast.error('Passwords do not match');
+            toast.error('Passwords did not matched');
             return;
         }
         createUser(email, password, name, avatar)
             .then(() => {
-                return axios.post('http://localhost:3000/users', newUser);
+                return axiosPublic.post('/users', newUser);
             })
             .then(() => {
                 Swal.fire({
@@ -71,7 +73,7 @@ const Register = () => {
             })
             .catch((error) => {
                 toast.error(error.message || "Failed to create account");
-            }); 2``
+            });
     };
 
     return (
