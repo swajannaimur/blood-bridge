@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2 {
+    font-family: 'Merriweather', sans-serif;
+}
+
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: #E63946;
+    --color-secondary: #457B9D;
+    --color-background: #F8F9FA;
+    --color-textColor: #2C2C2C;
+}
