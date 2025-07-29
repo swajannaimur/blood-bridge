@@ -58,7 +58,7 @@ const Register = () => {
         }
         createUser(email, password, name, avatar)
             .then(() => {
-                return axiosPublic.post('/users', newUser);
+                return axiosPublic.post('/all-users', newUser);
             })
             .then(() => {
                 Swal.fire({

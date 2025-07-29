@@ -18,9 +18,9 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 import CreateDonationRequest from './Pages/CreateDonationRequest.jsx';
 import MyDonationRequests from './Pages/MyDonationRequests.jsx';
 import DonationRequestDetails from './Components/DonationRequestDetails/DonationRequestDetails.jsx';
-import Loader from './Components/Loader/Loader.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
-import useAxiosSecure from './Hooks/axiosSecure.jsx';
+import DashboardLayout from './Components/DashboardLayout/DashboardLayout.jsx';
+import DonorDashboard from './Components/DonorDashboard/DonorDashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,18 @@ const router = createBrowserRouter([
       { path: 'register', Component: Register },
       {
         path: 'dashboard',
-        element: <PrivateRoute><Dashboard /></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+          {
+          path: '/dashboard',
+           element: <Dashboard/>
+          },
+          {
+            path: '/dashboard/my-donations',
+            element: <h2>helo</h2>
+          }
+        
+        ]
       },
       {
         path: '/create-donation-request',
@@ -45,8 +56,6 @@ const router = createBrowserRouter([
       },
       {
         path: '/donation-requests/:id',
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/donation-requests/${params.id}`).then(res => res.json()),
         Component: DonationRequestDetails
       }
     ]

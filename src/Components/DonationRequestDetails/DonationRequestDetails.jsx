@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import Loader from '../Loader/Loader';
 
@@ -8,13 +8,25 @@ import { toast } from 'react-toastify';
 import useAxiosSecure from '../../Hooks/axiosSecure';
 
 const DonationRequestDetails = () => {
+    const params = useParams()
     const { user, loading } = useContext(AuthContext)
-    const data = useLoaderData();
+    const [data, setData] = useState()
     const axiosSecure = useAxiosSecure()
 
-    if (loading) {
+    useEffect(() => {
+        axiosSecure.get(`/donation-requests/${params.id}`)
+            .then(res => {
+                setData(res.data)
+                console.log(res.data);
+            }).catch(error => {
+                console.log(error);
+            })
+    },[params.id])
+
+    if (loading || !data) {
         return <Loader></Loader>
     }
+
     const {
         _id,
         requesterName,
@@ -46,7 +58,6 @@ const DonationRequestDetails = () => {
                 toast.error(error.message);
             });
     }
-
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-10">
