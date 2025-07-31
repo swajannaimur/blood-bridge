@@ -22,6 +22,8 @@ import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
 import DashboardLayout from './Components/DashboardLayout/DashboardLayout.jsx';
 import DonorDashboard from './Components/DonorDashboard/DonorDashboard.jsx';
 import UpdateRequest from './Pages/UpdateRequest.jsx';
+import AllUsers from './Pages/AllUsers.jsx';
+import AllDonationReques from './Pages/AllDonationReques.jsx';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
             path: 'update-request/:id',
             element: <UpdateRequest />
           },
+          {
+            path: 'all-users',
+            Component: AllUsers
+          },
+          {
+            path: 'all-blood-donation-requests',
+            Component: AllDonationReques
+          }
         ]
       },
 

@@ -1,39 +1,31 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../Components/Contexts/AuthContext';
-import Loader from '../Components/Loader/Loader';
-import MyDonationRequetsTable from '../Components/MyDonationRequetsTable/MyDonationRequetsTable';
+import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../Hooks/axiosSecure';
+import MyDonationRequetsTable from '../Components/MyDonationRequetsTable/MyDonationRequetsTable';
+import AllDonationRequestsTable from '../Components/AllDonationRequestsTable/AllDonationRequestsTable';
 
-const MyDonationRequests = () => {
-    const axiosSecure = useAxiosSecure();
-    const { user } = useContext(AuthContext);
-    const [myRequests, setMyRequests] = useState([]);
+const AllDonationReques = () => {
+    const [requests, setRequests] = useState([])
+    const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
-        if (user?.email) {
-            axiosSecure
-                .get(`/my-donation-requests?email=${user.email}`)
-                .then(res => {
-                    setMyRequests(res.data);
-                  
-                })
-                .catch(error => {
-                    console.error("Failed to fetch donation requests", error);
-                });
-        }
-    }, [user?.email, axiosSecure]);
+        axiosSecure.get('/all-donation-requests')
+            .then((res) => {
+                setRequests(res.data)
+            })
+    }, [axiosSecure])
 
-  
+
     return (
-        <div className='flex flex-col justify-center '>
-            <div className="mb-6 text-center">
-                <h2 className="text-3xl font-bold text-primary"> Your Donation Requests</h2>
-                <p className="max-w-2xl mx-auto text-gray-700 mt-2 text-sm sm:text-base">
-                    Here you can view all your submitted blood donation requests. Make sure to keep your requests up to date so that donors can respond promptly and help save lives.
+        <div>
+            <div className="text-center my-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary"> All Donation Requests</h2>
+                <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+                    Below is a list of all the blood donation requests submitted by users across the platform.
+                    You can view, manage, and track the status of each request to ensure timely assistance to those in need.
                 </p>
             </div>
-
-            {myRequests.length === 0 ? (
+            <div>
+                 {requests.length === 0 ? (
                 <p className='text-center font-semibold text-secondary text-2xl '>You have No donation requests found.</p>
             ) : (
                 <div className="overflow-x-auto p-4">
@@ -53,12 +45,12 @@ const MyDonationRequests = () => {
                         </thead>
                         <tbody>
                             {
-                                myRequests.map((myRequest) => (
-                                    <MyDonationRequetsTable
-                                        key={myRequest._id}
-                                        myRequest={myRequest}
-                                        myRequests={myRequests}
-                                        setMyRequests={setMyRequests}
+                                requests.map((request) => (
+                                    <AllDonationRequestsTable
+                                        key={request._id}
+                                        request={request}
+                                        requests={requests}
+                                        setRequests= {setRequests}
                                     />
                                 ))
                             }
@@ -66,8 +58,9 @@ const MyDonationRequests = () => {
                     </table>
                 </div>
             )}
+            </div>
         </div>
     );
 };
 
-export default MyDonationRequests;
+export default AllDonationReques;

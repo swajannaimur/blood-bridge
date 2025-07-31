@@ -10,11 +10,34 @@ const DashboardSidebar = () => {
 
     if (role === 'admin') {
         return (
-            <>
-                <Link to="/dashboard">Admin Home</Link>
-                <Link to="/dashboard/manage-users">Manage Users</Link>
-                <Link to="/dashboard/manage-requests">Manage Requests</Link>
-            </>
+            <div className="p-4 text-black rounded-xl border-2 border-primary">
+                <ul className='space-y-2 '>
+                    <li>
+                        <NavLink
+                            to="/dashboard"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                            Dashboard
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/dashboard/all-users"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                          All Users
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/dashboard/all-blood-donation-requests"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                          All Donation Requests
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
         );
     }
 
@@ -27,7 +50,7 @@ const DashboardSidebar = () => {
                             to="/dashboard"
                             className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
                         >
-                         Dashboard
+                            Dashboard
                         </NavLink>
                     </li>
                     <li>

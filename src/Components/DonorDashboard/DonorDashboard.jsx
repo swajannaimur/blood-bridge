@@ -30,7 +30,7 @@ const DonorDashboard = () => {
             </div>
             <div>
                 {datas.length === 0 ? (
-                    <p className='text-center font-semibold text-secondary text-2xl '>You have No donation requests found.</p>
+                    <p className='text-center font-semibold text-secondary text-2xl my-5'>You have No donation requests found.</p>
                 ) : (
                     <div className="overflow-x-auto p-4">
                         <table className="min-w-full border border-gray-300 rounded-lg shadow-md text-sm sm:text-base">

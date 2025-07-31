@@ -5,19 +5,65 @@ import useAxiosSecure from '../Hooks/axiosSecure';
 const AdminDashboard = () => {
     const { user } = useContext(AuthContext)
     const [users, setUsers] = useState([])
+    const [requests, setRequests] = useState([])
     const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
-        axiosSecure.get('/all-users').then((res) => setUsers(res.data))
+        axiosSecure.get('/all-users')
+            .then((res) => setUsers(res.data))
+    }, [axiosSecure])
+
+    useEffect(() => {
+        axiosSecure.get('/all-donation-requests')
+            .then((res) => {
+                setRequests(res.data)
+            })
     }, [axiosSecure])
 
     return (
         <div>
-            {/* {
-                users.map(user=>
-                    <div><h2>{user.name}</h2></div>
-                )
-            } */}
+            <div className='text-center'>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+                    👋 Welcome, <span className="text-primary">{user?.displayName || 'Admin'}</span>!
+                </h1>
+                <p className="text-gray-600 mt-2">You're logged in as an admin. Manage and monitor the platform efficiently!</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-3 justify-center items-start gap-4 mt-8'>
+                {/* Total Users */}
+                <div className="card bg-primary text-primary-content shadow-xl min-h-[260px]">
+                    <div className="card-body">
+                        <h2 className="card-title text-white">Total Users: {users.length}</h2>
+                        <p>This number shows the total registered users who have joined the platform.</p>
+                        <div className="card-actions justify-end mt-auto">
+                            <button className="btn bg-white text-primary">View Users</button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Total Funds */}
+                <div className="card bg-primary text-primary-content shadow-xl min-h-[260px]">
+                    <div className="card-body">
+                        <h2 className="card-title text-white">Total Funds: 0</h2>
+                        <p>This shows the total amount of financial contributions collected through the platform.</p>
+                        <div className="card-actions justify-end mt-auto">
+                            <button className="btn bg-white text-primary">View Funds</button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Total Donation Requests */}
+                <div className="card bg-primary text-primary-content shadow-xl min-h-[260px]">
+                    <div className="card-body">
+                        <h2 className="card-title text-white">Total Donation Requests:{requests.length}</h2>
+                        <p>This indicates the number of blood donation requests submitted by donors or recipients.</p>
+                        <div className="card-actions justify-end mt-auto">
+                            <button className="btn bg-white text-primary">View Requests</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };
