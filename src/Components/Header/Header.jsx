@@ -24,8 +24,6 @@ const Header = () => {
         <>
             <li><NavLink to="/" className="text-primary lg:text-lg font-bold">Home</NavLink></li>
             <li><NavLink to="/dashboard" className="text-primary lg:text-lg font-bold">Dashboard</NavLink></li>
-            <li><NavLink to="/create-donation-request" className="text-primary lg:text-lg font-bold">Create Donation Request</NavLink></li>
-            <li><NavLink to="/donation-requests" className="text-primary lg:text-lg font-bold">My Donation Requests</NavLink></li>
         </>
     );
 

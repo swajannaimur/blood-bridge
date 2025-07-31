@@ -29,7 +29,7 @@ const MyDonationRequests = () => {
     }
 
     return (
-        <div className='flex flex-col justify-center min-h-screen'>
+        <div className='flex flex-col justify-center '>
             <div className="mb-6 text-center">
                 <h2 className="text-3xl font-bold text-primary"> Your Donation Requests</h2>
                 <p className="max-w-2xl mx-auto text-gray-700 mt-2 text-sm sm:text-base">
@@ -38,7 +38,7 @@ const MyDonationRequests = () => {
             </div>
 
             {myRequests.length === 0 ? (
-                <p>No donation requests found.</p>
+                <p className='text-center font-semibold text-secondary text-2xl '>You have No donation requests found.</p>
             ) : (
                 <div className="overflow-x-auto p-4">
                     <table className="min-w-full border border-gray-300 rounded-lg shadow-md text-sm sm:text-base">

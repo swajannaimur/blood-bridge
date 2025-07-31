@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import useRole from '../../Hooks/UseRole';
 import Loader from '../Loader/Loader';
 
@@ -20,19 +20,33 @@ const DashboardSidebar = () => {
 
     if (role === 'donor') {
         return (
-            <div className="flex flex-col gap-3 p-4 bg-gray-800 rounded-xl shadow-md">
-                <Link
-                    to="/dashboard"
-                    className="px-4 py-2 rounded-lg text-white bg-gray-700 hover:bg-indigo-600 transition-colors duration-200"
-                >
-                    Donor Home
-                </Link>
-                <Link
-                    to="/dashboard/my-donations"
-                    className="px-4 py-2 rounded-lg text-white bg-gray-700 hover:bg-indigo-600 transition-colors duration-200"
-                >
-                    My Donations
-                </Link>
+            <div className="p-4 text-black rounded-xl border-2 border-primary">
+                <ul className='space-y-2 '>
+                    <li>
+                        <NavLink
+                            to="/dashboard"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                         Dashboard
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/dashboard/donation-requests"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                            My Donation Requests
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/dashboard/create-donation-request"
+                            className="px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200"
+                        >
+                            Create Donation Request
+                        </NavLink>
+                    </li>
+                </ul>
             </div>
         );
     }
@@ -41,3 +55,4 @@ const DashboardSidebar = () => {
 };
 
 export default DashboardSidebar;
+

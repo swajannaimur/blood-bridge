@@ -21,6 +21,7 @@ import DonationRequestDetails from './Components/DonationRequestDetails/Donation
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
 import DashboardLayout from './Components/DashboardLayout/DashboardLayout.jsx';
 import DonorDashboard from './Components/DonorDashboard/DonorDashboard.jsx';
+import UpdateRequest from './Pages/UpdateRequest.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,24 +37,24 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
           {
-          path: '/dashboard',
-           element: <Dashboard/>
+            index: true,
+            element: <Dashboard />
           },
           {
-            path: '/dashboard/my-donations',
-            element: <h2>helo</h2>
-          }
-        
+            path: 'donation-requests',
+            element: <MyDonationRequests />
+          },
+          {
+            path: 'create-donation-request',
+            element: <CreateDonationRequest></CreateDonationRequest>
+          },
+          {
+            path: 'update-request/:id',
+            element: <UpdateRequest />
+          },
         ]
       },
-      {
-        path: '/create-donation-request',
-        element: <PrivateRoute><CreateDonationRequest></CreateDonationRequest></PrivateRoute>
-      },
-      {
-        path: '/donation-requests',
-        element: <PrivateRoute><MyDonationRequests></MyDonationRequests></PrivateRoute>
-      },
+
       {
         path: '/donation-requests/:id',
         Component: DonationRequestDetails

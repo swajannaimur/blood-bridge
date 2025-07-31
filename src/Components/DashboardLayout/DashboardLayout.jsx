@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
 
     return (
-        <div className="drawer lg:drawer-open min-h-screen bg-gray-100">
+        <div className="drawer lg:drawer-open min-h-screen">
             {/* Drawer Toggle for Mobile */}
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
@@ -27,8 +27,7 @@ const DashboardLayout = () => {
             {/* Sidebar Drawer */}
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <aside className="w-72 bg-gray-800 text-white min-h-full p-6 space-y-6">
-                    <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+                <aside className="w-auto text-white min-h-full p-6 space-y-6">
                     <DashboardSidebar />
                 </aside>
             </div>

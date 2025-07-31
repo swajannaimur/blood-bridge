@@ -5,9 +5,9 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/axiosSecure';
 
-const MyDonationRequetsTable = ({ myRequest, myRequests, setMyRequests }) => {
+const RecentRequestsTable = ({ data, datas, setDatas }) => {
     const axiosSecure = useAxiosSecure()
-    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, requesterName, requesterEmail } = myRequest
+    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, requesterName, requesterEmail } = data
 
     const handleDeleteRequest = (id) => {
         Swal.fire({
@@ -30,8 +30,8 @@ const MyDonationRequetsTable = ({ myRequest, myRequests, setMyRequests }) => {
                             });
                         }
 
-                        const remainingRequests = myRequests.filter(myPost => myPost._id !== _id)
-                        setMyRequests(remainingRequests)
+                        const remainingRequests = datas.filter(myPost => myPost._id !== _id)
+                        setDatas(remainingRequests)
 
                     })
                     .catch((error) => {
@@ -88,4 +88,4 @@ const MyDonationRequetsTable = ({ myRequest, myRequests, setMyRequests }) => {
     </tr>
 };
 
-export default MyDonationRequetsTable;
+export default RecentRequestsTable;
