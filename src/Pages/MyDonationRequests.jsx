@@ -8,6 +8,11 @@ const MyDonationRequests = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const [myRequests, setMyRequests] = useState([]);
+    const [filterStatus, setFilterStatus] = useState('');
+
+    const filteredRequests = filterStatus
+        ? myRequests.filter(request => request.donationStatus === filterStatus)
+        : myRequests;
 
     useEffect(() => {
         if (user?.email) {
@@ -15,7 +20,7 @@ const MyDonationRequests = () => {
                 .get(`/my-donation-requests?email=${user.email}`)
                 .then(res => {
                     setMyRequests(res.data);
-                  
+
                 })
                 .catch(error => {
                     console.error("Failed to fetch donation requests", error);
@@ -23,7 +28,7 @@ const MyDonationRequests = () => {
         }
     }, [user?.email, axiosSecure]);
 
-  
+
     return (
         <div className='flex flex-col justify-center '>
             <div className="mb-6 text-center">
@@ -32,6 +37,21 @@ const MyDonationRequests = () => {
                     Here you can view all your submitted blood donation requests. Make sure to keep your requests up to date so that donors can respond promptly and help save lives.
                 </p>
             </div>
+
+            <div className="flex justify-end mb-4 px-4">
+                <select
+                    className="select select-bordered w-full max-w-xs"
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                >
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="done">Done</option>
+                    <option value="cancel">Canceled</option>
+                </select>
+            </div>
+
 
             {myRequests.length === 0 ? (
                 <p className='text-center font-semibold text-secondary text-2xl '>You have No donation requests found.</p>
@@ -53,7 +73,7 @@ const MyDonationRequests = () => {
                         </thead>
                         <tbody>
                             {
-                                myRequests.map((myRequest) => (
+                                filteredRequests.map((myRequest) => (
                                     <MyDonationRequetsTable
                                         key={myRequest._id}
                                         myRequest={myRequest}

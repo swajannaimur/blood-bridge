@@ -5,11 +5,16 @@ import UsersTable from '../Components/UsersTable/UsersTable';
 const AllUsers = () => {
     const [users, setUsers] = useState([])
     const axiosSecure = useAxiosSecure()
+    const [filterStatus, setFilterStatus] = useState('');
 
     useEffect(() => {
         axiosSecure.get('/all-users')
             .then((res) => setUsers(res.data))
     }, [axiosSecure])
+
+    const filteredStatus = filterStatus
+        ? users.filter(user => user.status === filterStatus)
+        : users;
 
     return (
         <div>
@@ -18,6 +23,18 @@ const AllUsers = () => {
                 <p className="max-w-2xl mx-auto text-gray-700 mt-2 text-sm sm:text-base">
                     Below is the list of all users who have joined the platform (excluding admins). Use this section to view user details and manage their roles or access if needed. This helps ensure the platform remains secure and well-maintained.
                 </p>
+            </div>
+
+            <div className="flex justify-end mb-4 px-4">
+                <select
+                    className="select select-bordered w-full max-w-xs"
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                >
+                    <option value="">All Statuses</option>
+                    <option value="active">Active</option>
+                    <option value="blocked">Blocked</option>
+                </select>
             </div>
 
             <div>
@@ -36,16 +53,15 @@ const AllUsers = () => {
                                     <th className="border border-gray-300 px-2 sm:px-4 py-2">Change Role</th>
                                     <th className="border border-gray-300 px-2 sm:px-4 py-2">Status</th>
                                     <th className="border border-gray-300 px-2 sm:px-4 py-2">Actions</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Filter</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    users.map((user) => (
+                                    filteredStatus.map((user) => (
                                         <UsersTable
                                             key={user._id}
                                             user={user}
-                                            users={users}
+                                            filteredStatus={filteredStatus}
                                             setUsers={setUsers}
                                         />
                                     ))

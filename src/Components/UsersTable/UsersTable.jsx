@@ -52,7 +52,7 @@ const UsersTable = ({ user, users, setUsers }) => {
             confirmButtonText: "Yes, Block!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/update-user-status?email=${email}`, { updatedStatus: 'block' })
+                axiosSecure.patch(`/update-user-status?email=${email}`, { updatedStatus: 'blocked' })
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
                             Swal.fire("Success!", "User has been Blocked.", "success");
@@ -145,7 +145,7 @@ const UsersTable = ({ user, users, setUsers }) => {
                     <button onClick={() => handleBlock(user.email)} className="btn btn-secondary">Block</button>
                 )}
 
-                {status === 'block' && (
+                {status === 'blocked' && (
                     <button onClick={() => handleUnBlock(user.email)} className="btn btn-secondary">Unblock</button>
                 )}
             </div>
@@ -167,7 +167,7 @@ const UsersTable = ({ user, users, setUsers }) => {
                 </Link>
 
                 <button onClick={() => handleDeleteRequest(_id)} className='btn btn-primary'>
-                    <MdCancel size={20} />
+                    <MdOutlineDelete  size={20} />
                 </button>
 
                 <Link to={`/donation-requests/${_id}`}><button className='btn btn-primary'>

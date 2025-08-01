@@ -21,7 +21,7 @@ const DonationRequestDetails = () => {
             }).catch(error => {
                 console.log(error);
             })
-    },[params.id])
+    }, [params.id])
 
     if (loading || !data) {
         return <Loader></Loader>
@@ -46,8 +46,16 @@ const DonationRequestDetails = () => {
 
     const handleUpdateDonationRequest = e => {
         e.preventDefault();
+        const form = e.target;
+        const donorName = form.donorName.value;
+        const donorEmail = form.donorEmail.value;
         const newStatus = 'inprogress';
-        axiosSecure.patch(`/donation-requests/${_id}`, { newStatus })
+
+        axiosSecure.patch(`/donation-requests/${_id}`, {
+            newStatus,
+            donorName,
+            donorEmail
+        })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire("Updated!", `Status changed to ${newStatus}`, "success");
@@ -57,7 +65,7 @@ const DonationRequestDetails = () => {
             .catch(error => {
                 toast.error(error.message);
             });
-    }
+    };
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-10">

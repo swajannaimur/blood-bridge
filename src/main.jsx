@@ -24,6 +24,8 @@ import DonorDashboard from './Components/DonorDashboard/DonorDashboard.jsx';
 import UpdateRequest from './Pages/UpdateRequest.jsx';
 import AllUsers from './Pages/AllUsers.jsx';
 import AllDonationReques from './Pages/AllDonationReques.jsx';
+import ContentMangement from './Pages/ContentMangement.jsx';
+import AddBlog from './Components/AddBlog/AddBlog.jsx';
 
 const router = createBrowserRouter([
   {
@@ -61,10 +63,17 @@ const router = createBrowserRouter([
           {
             path: 'all-blood-donation-requests',
             Component: AllDonationReques
+          },
+          {
+            path: 'content-management',
+            Component: ContentMangement
+          },
+          {
+            path: 'content-management/add-blog',
+            Component: AddBlog
           }
         ]
       },
-
       {
         path: '/donation-requests/:id',
         Component: DonationRequestDetails

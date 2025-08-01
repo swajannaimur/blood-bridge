@@ -1,13 +1,17 @@
 import React from 'react';
 import { FaRegEdit, FaRegEye } from 'react-icons/fa';
-import { MdCancel } from 'react-icons/md';
+import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/axiosSecure';
+import UseRole from '../../Hooks/UseRole';
+import { toast } from 'react-toastify';
 
 const AllDonationRequestsTable = ({ request, requests, setRequests }) => {
+    const { role } = UseRole()
+    console.log(role);
 
-    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, requesterName, requesterEmail } = request
+    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, donorName, donorEmail } = request
     const axiosSecure = useAxiosSecure()
 
     const handleDeleteRequest = (id) => {
@@ -42,6 +46,22 @@ const AllDonationRequestsTable = ({ request, requests, setRequests }) => {
         });
     };
 
+    const handleStatusUpdate = (id, status) => {
+        axiosSecure.patch(`/donation-requests/${id}`, { newStatus: status })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire("Updated!", `Status changed to ${status}`, "success");
+                }
+                const updatedRequests = requests.map(myPost =>
+                    myPost._id === id ? { ...myPost, donationStatus: status } : myPost
+                );
+                setRequests(updatedRequests);
+            })
+            .catch(error => {
+                toast.error(error.message)
+            });
+    };
+
     return <tr className="hover:bg-gray-50">
         <td className="border border-gray-300 px-2 sm:px-4 py-2">
             <div className="font-medium text-gray-800">{recipientName}</div>
@@ -58,32 +78,65 @@ const AllDonationRequestsTable = ({ request, requests, setRequests }) => {
         <td className="border border-gray-300 px-2 sm:px-4 py-2">
             <div className="font-medium text-gray-800">{bloodGroup}</div>
         </td>
+
         <td className="border border-gray-300 px-2 sm:px-4 py-2">
-            <div className="font-medium text-gray-800">{donationStatus}</div>
+            {
+                donationStatus === 'inprogress' ? (
+                    <>
+                        <div className="font-medium text-gray-800">{donationStatus}</div>
+                        <div className='flex justify-center items-center gap-2'>
+                            <button
+                                className='btn btn-primary text-white'
+                                onClick={() => handleStatusUpdate(_id, 'done')}>
+                                Done
+                            </button>
+
+                            <button
+                                className='btn btn-secondary text-white'
+                                onClick={() => handleStatusUpdate(_id, 'canceled')}>
+                                Cancel
+                            </button>
+                        </div>
+                    </>
+                ) : <>
+                    <div className="font-medium text-gray-800">{donationStatus}</div>
+                </>
+            }
         </td>
+
         <td className="border border-gray-300 px-2 sm:px-4 py-2">
             {
                 donationStatus === 'inprogress' ? <>
-                    <div className="font-medium text-gray-800">{requesterName},{requesterEmail}</div>
+                    <div className="font-medium text-gray-800">{donorName},{donorEmail}</div>
                 </> : ''
             }
         </td>
         <td className="px-2 ">
-            <div className='flex justify-center items-center gap-2'>
-                <Link to={`/dashboard/update-request/${_id}`}>
-                    <button className='btn btn-primary'>
-                        <FaRegEdit size={20} />
-                    </button>
-                </Link>
+            {
+                role === 'admin' ?
+                    <div className='flex justify-center items-center gap-2'>
+                        <Link to={`/dashboard/update-request/${_id}`}>
+                            <button className='btn btn-primary'>
+                                <FaRegEdit size={20} />
+                            </button>
+                        </Link>
 
-                <button onClick={() => handleDeleteRequest(_id)} className='btn btn-primary'>
-                    <MdCancel size={20} />
-                </button>
+                        <button onClick={() => handleDeleteRequest(_id)} className='btn btn-primary'>
+                            <MdOutlineDelete size={20} />
+                        </button>
 
-                <Link to={`/donation-requests/${_id}`}><button className='btn btn-primary'>
-                    <FaRegEye size={20} />
-                </button></Link>
-            </div>
+                        <Link to={`/donation-requests/${_id}`}><button className='btn btn-primary'>
+                            <FaRegEye size={20} />
+                        </button></Link>
+                    </div> :
+
+                    <div className='flex justify-center items-center gap-2'>
+                        <Link to={`/donation-requests/${_id}`}><button className='btn btn-primary'>
+                            <FaRegEye size={20} />
+                        </button></Link>
+                    </div>
+
+            }
 
         </td>
     </tr>

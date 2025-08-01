@@ -1,13 +1,13 @@
 import React from 'react';
 import { FaRegEdit, FaRegEye } from 'react-icons/fa';
-import { MdCancel } from 'react-icons/md';
+import { MdOutlineDelete  } from 'react-icons/md';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/axiosSecure';
 
 const RecentRequestsTable = ({ data, datas, setDatas }) => {
     const axiosSecure = useAxiosSecure()
-    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, requesterName, requesterEmail } = data
+    const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, donorEmail, donorName } = data
 
     const handleDeleteRequest = (id) => {
         Swal.fire({
@@ -61,9 +61,9 @@ const RecentRequestsTable = ({ data, datas, setDatas }) => {
             <div className="font-medium text-gray-800">{donationStatus}</div>
         </td>
         <td className="border border-gray-300 px-2 sm:px-4 py-2">
-            {
+           {
                 donationStatus === 'inprogress' ? <>
-                    <div className="font-medium text-gray-800">{requesterName},{requesterEmail}</div>
+                    <div className="font-medium text-gray-800">{donorName},{donorEmail}</div>
                 </> : ''
             }
         </td>
@@ -76,7 +76,7 @@ const RecentRequestsTable = ({ data, datas, setDatas }) => {
                 </Link>
 
                 <button onClick={() => handleDeleteRequest(_id)} className='btn btn-primary'>
-                    <MdCancel size={20} />
+                    <MdOutlineDelete  size={20} />
                 </button>
 
                 <Link to={`/donation-requests/${_id}`}><button className='btn btn-primary'>
