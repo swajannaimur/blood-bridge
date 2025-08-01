@@ -57,7 +57,6 @@ const CreateDonationRequest = () => {
                         icon: "success"
                     });
                 }
-                console.log(res.data);
                 form.reset();
             }).catch(error => {
                 console.log(error);

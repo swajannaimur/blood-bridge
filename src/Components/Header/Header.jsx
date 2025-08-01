@@ -23,7 +23,8 @@ const Header = () => {
     const links = (
         <>
             <li><NavLink to="/" className="text-primary lg:text-lg font-bold">Home</NavLink></li>
-            <li><NavLink to="/dashboard" className="text-primary lg:text-lg font-bold">Dashboard</NavLink></li>
+            <li><NavLink to="/donation-requests" className="text-primary lg:text-lg font-bold">Donation Requests</NavLink></li>
+            <li><NavLink to="/all-blogs" className="text-primary lg:text-lg font-bold">Blog</NavLink></li>
         </>
     );
 
@@ -47,7 +48,7 @@ const Header = () => {
                             {
                                 user ? (
                                     <>
-                                      {links}
+                                        {links}
                                     </>
                                 ) : (
                                     <>
@@ -69,26 +70,22 @@ const Header = () => {
                 {/* Center Menu */}
                 <div className="hidden lg:flex lg:justify-center">
                     <ul className="menu menu-horizontal px-1">
-                        {links}
+
+                        {
+                            user ?
+                                <>
+                                    {links}
+
+                                </> :
+                                <>
+                                    {links}
+                                </>
+                        }
                     </ul>
                 </div>
 
                 {/* End Section*/}
                 <div className="hidden lg:flex lg:justify-end lg:items-center space-x-2">
-                  
-                  {/* Dark mode theme */}
-                    {/* <div>
-                        <input
-                            type="checkbox"
-                            value="dark"
-                            className="toggle theme-controller mr-2"
-                            checked={theme === "dark"}
-                            onChange={handleThemeChange}
-                        />
-                        <span className='text-md text-primary font-bold'>
-                            {theme === 'dark' ? 'Light' : 'Dark'}
-                        </span>
-                    </div> */}
 
                     {
                         user ? (
@@ -105,9 +102,11 @@ const Header = () => {
                                     tabIndex={0}
                                     className="mt-3 z-[1] p-2 border shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-box w-64">
 
+                                    <li><NavLink to="/dashboard" className="text-primary lg:text-lg font-bold">Dashboard</NavLink></li>
                                     <li>
                                         <button onClick={handleSignOut} className="btn btn-secondary text-white w-full mt-2">Logout</button>
                                     </li>
+
                                 </ul>
                             </div>
                         ) : (

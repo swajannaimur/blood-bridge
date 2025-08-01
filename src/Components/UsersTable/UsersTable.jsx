@@ -8,7 +8,7 @@ const UsersTable = ({ user, users, setUsers }) => {
 
     const handleChangeRole = (e, email) => {
         const updatedRole = e.target.value;
-        console.log(updatedRole);
+
         Swal.fire({
             title: "Are you sure?",
             text: "You are about to change the user's role.",

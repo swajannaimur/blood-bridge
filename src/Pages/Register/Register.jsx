@@ -44,13 +44,12 @@ const Register = () => {
             role: "donor",
             status: "active"
         }
-        console.log(newUser);
-
-        // const passValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        // if (!passValidation.test(password)) {
-        //     toast.error('Password must contain an uppercase, a lowercase, and be at least 6 characters');
-        //     return;
-        // }
+        
+        const passValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passValidation.test(password)) {
+            toast.error('Password must contain an uppercase, a lowercase, and be at least 6 characters');
+            return;
+        }
 
         if (password !== confirmPassword) {
             toast.error('Passwords did not matched');

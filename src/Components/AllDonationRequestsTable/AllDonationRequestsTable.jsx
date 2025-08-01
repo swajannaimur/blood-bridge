@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 
 const AllDonationRequestsTable = ({ request, requests, setRequests }) => {
     const { role } = UseRole()
-    console.log(role);
 
     const { _id, recipientName, district, upozila, donationDate, donationTime, bloodGroup, donationStatus, donorName, donorEmail } = request
     const axiosSecure = useAxiosSecure()

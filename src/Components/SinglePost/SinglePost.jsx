@@ -3,6 +3,7 @@ import useAxiosSecure from '../../Hooks/axiosSecure';
 import Swal from 'sweetalert2';
 import { MdOutlineDelete } from 'react-icons/md';
 import UseRole from '../../Hooks/UseRole';
+import { Link } from 'react-router';
 
 const SinglePost = ({ post, posts, setPosts }) => {
     const axiosSecure = useAxiosSecure()
@@ -128,7 +129,9 @@ const SinglePost = ({ post, posts, setPosts }) => {
                                 <button onClick={() => handleDeletePost(_id)} className='btn btn-primary'>
                                     <MdOutlineDelete size={20} />
                                 </button>
-                            </> : ''
+                            </> : <>
+                            <Link to={`all-blogs/${_id}`}><button className='btn btn-primary'>View</button></Link>
+                            </>
                         }
                     </div>
                 </div>

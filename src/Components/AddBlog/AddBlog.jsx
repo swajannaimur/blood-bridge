@@ -10,7 +10,7 @@ const AddBlog = () => {
 
     const handleAddBlog = e => {
         e.preventDefault()
-        console.log('clicked');
+
         const form = e.target
         const title = form.title.value
         const thumbnail = form.thumbnail.value

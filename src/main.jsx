@@ -26,6 +26,9 @@ import AllUsers from './Pages/AllUsers.jsx';
 import AllDonationReques from './Pages/AllDonationReques.jsx';
 import ContentMangement from './Pages/ContentMangement.jsx';
 import AddBlog from './Components/AddBlog/AddBlog.jsx';
+import DonationRequests from './Pages/DonationRequests/DonationRequests.jsx';
+import AllBlogs from './Pages/AllBlogs/AllBlogs.jsx';
+import BlogsDetails from './Pages/AllBlogs/BlogsDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -76,7 +79,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/donation-requests/:id',
-        Component: DonationRequestDetails
+        element: <PrivateRoute><DonationRequestDetails></DonationRequestDetails></PrivateRoute>
+      },
+      {
+        path: '/donation-requests',
+        Component: DonationRequests
+      },
+      {
+        path: '/all-blogs',
+        Component: AllBlogs
+      },
+      {
+        path: '/all-blogs/:id',
+        Component: BlogsDetails
       }
     ]
   },
