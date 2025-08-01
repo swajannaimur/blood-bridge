@@ -26,9 +26,15 @@ const AllBlogs = () => {
             </div>
             <div>
                 <div className='grid grid-cols-2 gap-4 mt-10'>
-                    {
-                        blogs.map(blog => <SingleBlog key={blog._id} blog={blog} blogs={blogs} setBlogs={setBlogs} />)
-                    }
+                    {blogs.length === 0 ? <>
+                        <p className="text-center col-span-2 text-gray-600 text-lg">
+                            No Posts Have been found. Add a post first to control
+                        </p>
+                    </> : <>
+                        {
+                            blogs.map(blog => <SingleBlog key={blog._id} blog={blog} blogs={blogs} setBlogs={setBlogs} />)
+                        }
+                    </>}
                 </div>
             </div>
         </div>
