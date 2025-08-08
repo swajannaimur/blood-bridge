@@ -8,7 +8,7 @@ A user-friendly full-stack MERN application for managing volunteer posts. Users 
 
 
 ## Screenshot
-![App Screenshot](./path-to-your-screenshot.png)
+![App Screenshot](https://github.com/swajannaimur/blood-bridge/blob/main/Screenshot%202025-08-08%20152728.png)
 
 ## Technologies Used
 - React.js
@@ -18,12 +18,9 @@ A user-friendly full-stack MERN application for managing volunteer posts. Users 
 - Firebase Authentication
 - JWT (JSON Web Token)
 - Tailwind CSS
-- React Router
-- React Datepicker
-- Framer Motion
 
 ## Core Features
-- User registration and login (email/password & Google OAuth)
+- User registration and login (email/password & Google Auth)
 - Role-based private routes protected with JWT
 - Create, read, update, and delete volunteer need posts
 - Volunteer request system with dynamic updates
