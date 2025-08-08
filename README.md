@@ -4,7 +4,8 @@
 A user-friendly full-stack MERN application for managing volunteer posts. Users can create, update, and delete volunteer needs, sign up as volunteers, and manage their posts securely with JWT authentication. The app supports email/password and Google login and is fully responsive with dark/light mode.
 
 ## Live Project
-[View Live Demo](https://your-live-link.com](https://volunteerly-7571d.web.app/))
+[View Live Demo](https://volunteerly-7571d.web.app/)
+
 
 ## Screenshot
 ![App Screenshot](./path-to-your-screenshot.png)
