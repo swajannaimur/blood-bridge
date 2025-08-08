@@ -113,11 +113,14 @@ const SinglePost = ({ post, posts, setPosts }) => {
                 <figure>
                     <img
                         src={thumbnail}
-                        alt="" />
+                        alt="" className='w-full h-60 object-cover rounded-t-xl' />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">Post Title: {title}</h2>
-                    <div className="text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
+                    <div className="text-lg leading-relaxed line-clamp-3">
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                    </div>
+                    <h2 className="text-lg font-semibold">Post Status: <span className='text-primary'>{status}</span></h2>
                     <div className="card-actions justify-end">
                         {
                             role === 'admin' ? <>
@@ -129,8 +132,9 @@ const SinglePost = ({ post, posts, setPosts }) => {
                                 <button onClick={() => handleDeletePost(_id)} className='btn btn-primary'>
                                     <MdOutlineDelete size={20} />
                                 </button>
+                                <Link to={`/all-blogs/${_id}`}><button className='btn btn-primary'>View</button></Link>
                             </> : <>
-                            <Link to={`all-blogs/${_id}`}><button className='btn btn-primary'>View</button></Link>
+                                <Link to={`/all-blogs/${_id}`}><button className='btn btn-primary'>View</button></Link>
                             </>
                         }
                     </div>

@@ -60,7 +60,7 @@ const AddBlog = () => {
                             />
                         </fieldset>
                         <fieldset>
-                            <legend className="text-sm font-bold text-secondary mb-1">Requester Name</legend>
+                            <legend className="text-sm font-bold text-secondary mb-1">Thumbnail</legend>
                             <input type="text" name="thumbnail" className="input input-bordered w-full" placeholder="Enter your photo URL" required />
                         </fieldset>
 

@@ -10,13 +10,15 @@ const SingleBlog = ({ blog }) => {
                 <figure>
                     <img
                         src={thumbnail}
-                        alt="" />
+                        alt="" className='w-full h-60 object-cover rounded-t-xl' />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">Post Title: {title}</h2>
-                    <div className="text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
+                    <div className="text-lg leading-relaxed line-clamp-3">
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                    </div>
                     <div className="card-actions justify-end">
-                        <Link  to={`/all-blogs/${_id}`}><button className='btn btn-secondary'>View Full Post</button></Link>
+                        <Link to={`/all-blogs/${_id}`}><button className='btn btn-secondary'>View Full Post</button></Link>
                     </div>
                 </div>
             </div>

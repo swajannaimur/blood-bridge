@@ -5,6 +5,7 @@ import SingleBlog from './SingleBlog';
 const AllBlogs = () => {
     const [blogs, setBlogs] = useState([])
     const axiosPublic = useAxiosPublic()
+    
     useEffect(() => {
         axiosPublic.get('/all-blogs')
             .then(res => {
