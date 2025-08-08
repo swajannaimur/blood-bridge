@@ -1,14 +1,17 @@
-# Volunteer Management Website
+# Blood Donation Application
 
 ## Description
-A user-friendly full-stack MERN application for managing volunteer posts. Users can create, update, and delete volunteer needs, sign up as volunteers, and manage their posts securely with JWT authentication. The app supports email/password and Google login and is fully responsive with dark/light mode.
+A full-stack MERN application designed to facilitate seamless blood donation processes. The platform connects donors, volunteers, and admins, enabling user registration, blood donation requests, donor management, content management, and role-based access control. It features responsive dashboards, secure JWT authentication, real-time notifications, and intuitive UI for all devices.
+
+## Admin Credentials
+- **Email:** swajan@gmail.com   
+- **Password:** 123456
 
 ## Live Project
-[View Live Demo](https://volunteerly-7571d.web.app/)
-
+[View Live Demo](https://blood-bridge-951f8.web.app/)
 
 ## Screenshot
-![App Screenshot](https://github.com/swajannaimur/blood-bridge/blob/main/Screenshot%202025-08-08%20152728.png)
+![App Screenshot](https://github.com/swajannaimur/blood-bridge/blob/main/Screenshot%202025-08-08%20152336.png)
 
 ## Technologies Used
 - React.js
@@ -18,31 +21,43 @@ A user-friendly full-stack MERN application for managing volunteer posts. Users 
 - Firebase Authentication
 - JWT (JSON Web Token)
 - Tailwind CSS
+- Stripe (for payment integration)
+
 
 ## Core Features
-- User registration and login (email/password & Google Auth)
-- Role-based private routes protected with JWT
-- Create, read, update, and delete volunteer need posts
-- Volunteer request system with dynamic updates
-- Responsive UI for mobile, tablet, and desktop
-- Dark/light theme toggle
-- Dynamic page titles and custom 404 page
-- Toast/sweet alert notifications for actions
+- User registration with role-based default (Donor) and profile management
+- Role-based access control (Admin, Donor, Volunteer)
+- Blood donation request creation, update, delete with status tracking (pending, inprogress, done, canceled)
+- Responsive dashboard with sidebar layout for each user role
+- Donor search with filters (blood group, district, upazila)
+- Content management with blog creation, publishing, and management by admin/volunteer roles
+- Funding/donation system integrated with Stripe payment
+- JWT-secured private routes and APIs
+- Pagination and filtering on tables for users, requests, and blogs
+- Toast/sweet alert notifications for all CRUD and auth operations
+- Environment variables to securely manage Firebase and MongoDB credentials
+- No default browser alerts; custom notifications used
+- Admin can manage users: block/unblock, role assignment (admin, volunteer)
+- Volunteer role with limited but important permissions
+- Custom 404 page and dynamic routing with private route protection
 
 ## Dependencies
 - axios
-- react-toastify
 - react-router-dom
-- react-datepicker
+- react-toastify
 - firebase
 - jsonwebtoken
 - tailwindcss
-- framer-motion
+- stripe
+- jodit-react
+- react-modal
+- react-paginate
+- tanstack/react-query
 
 ## Getting Started - Running Locally
 
 1. **Clone the repositories:**
 
    ```bash
-   git clone https://github.com/your-username/client-repo.git
-   git clone https://github.com/your-username/server-repo.git
+   git clone https://github.com/swajannaimur/client-blood-donation.git
+
