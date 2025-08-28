@@ -5,9 +5,10 @@ import MyDonationRequetsTable from '../Components/MyDonationRequetsTable/MyDonat
 import useAxiosSecure from '../Hooks/axiosSecure';
 
 const MyDonationRequests = () => {
+    const [myRequests, setMyRequests] = useState([]);
+    const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
-    const [myRequests, setMyRequests] = useState([]);
     const [filterStatus, setFilterStatus] = useState('');
 
     const filteredRequests = filterStatus
@@ -20,14 +21,16 @@ const MyDonationRequests = () => {
                 .get(`/my-donation-requests?email=${user.email}`)
                 .then(res => {
                     setMyRequests(res.data);
-
+                    setLoading(false)
                 })
                 .catch(error => {
                     console.error("Failed to fetch donation requests", error);
                 });
         }
     }, [user?.email, axiosSecure]);
-
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className='flex flex-col justify-center '>

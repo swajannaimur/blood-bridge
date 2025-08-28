@@ -6,20 +6,25 @@ import RecentRequestsTable from './RecentRequestsTable';
 import { Link } from 'react-router';
 
 const DonorDashboard = () => {
-    const { user, loading } = useContext(AuthContext)
-    const axiosSecure = useAxiosSecure();
     const [datas, setDatas] = useState([])
-    
+    const [loading, setLoading] = useState(true)
+    const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure();
+
     useEffect(() => {
         axiosSecure.get(`/get-recent-requests?email=${user.email}`)
-            .then(res =>
+            .then(res => {
                 setDatas(res.data)
+                setLoading(false)
+            }
             )
             .catch(error => {
                 console.log(error)
             })
     }, [user.email, axiosSecure])
-
+    if (loading) {
+        return <Loader></Loader>
+    }
     return (
         <div className="bg-white shadow-md rounded-xl p-6 mb-6">
             <div className='text-center'>
@@ -65,9 +70,9 @@ const DonorDashboard = () => {
             </div>
             <div className='flex justify-center items-center'>
                 <Link to='/dashboard/donation-requests'>
-                <button className=' btn btn-primary'>
-                    My Donation Requests
-                </button>
+                    <button className=' btn btn-primary'>
+                        My Donation Requests
+                    </button>
                 </Link>
             </div>
         </div>

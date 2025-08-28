@@ -10,8 +10,8 @@ const DashboardSidebar = () => {
 
     if (role === 'admin') {
         return (
-            <div className="p-4 text-black rounded-xl border-2 border-primary">
-                <ul className='space-y-2 '>
+            <div className="mt-10  md:mt-0 p-4 text-black rounded-xl border-primary">
+                <ul className='space-y-5 '>
                     <li>
                         <NavLink
                             to="/dashboard"
@@ -51,8 +51,8 @@ const DashboardSidebar = () => {
 
     if (role === 'donor') {
         return (
-            <div className="p-4 text-black rounded-xl border-2 border-primary">
-                <ul className='space-y-2 '>
+            <div className="p-4 text-black rounded-xl border-primary">
+                <ul className='space-y-5 '>
                     <li>
                         <NavLink
                             to="/dashboard"
@@ -84,8 +84,8 @@ const DashboardSidebar = () => {
 
     if (role === 'volunteer') {
         return (
-            <div className="p-4 text-black rounded-xl border-2 border-primary">
-                <ul className='space-y-2 '>
+            <div className="p-4 text-black rounded-xl border-primary">
+                <ul className='space-y-5 '>
                     <li>
                         <NavLink
                             to="/dashboard"

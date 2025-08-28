@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../Hooks/axiosSecure';
 import UsersTable from '../Components/UsersTable/UsersTable';
+import Loader from '../Components/Loader/Loader';
 
 const AllUsers = () => {
-    const [users, setUsers] = useState([])
+    const [users, setUsers,] = useState([])
+    const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure()
     const [filterStatus, setFilterStatus] = useState('');
 
     useEffect(() => {
         axiosSecure.get('/all-users')
-            .then((res) => setUsers(res.data))
-    }, [axiosSecure])
+            .then((res) => {
+                setUsers(res.data)
+                setLoading(false)
+            })
+    }, [axiosSecure, setUsers])
 
     const filteredStatus = filterStatus
         ? users.filter(user => user.status === filterStatus)
         : users;
 
+    if (loading) {
+        return <Loader></Loader>
+    }
     return (
         <div>
             <div className="mb-6 text-center">

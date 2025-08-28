@@ -2,19 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import useAxiosSecure from '../Hooks/axiosSecure';
 import SinglePost from '../Components/SinglePost/SinglePost';
+import Loader from '../Components/Loader/Loader';
 
 const ContentMangement = () => {
     const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
     const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
         axiosSecure.get('/all-posts')
             .then(res => {
                 setPosts(res.data)
+                setLoading(false)
             }).catch(error => {
                 console.log(error);
             })
     }, [axiosSecure])
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div>

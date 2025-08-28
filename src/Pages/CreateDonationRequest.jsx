@@ -6,12 +6,14 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../Hooks/axiosSecure';
+import Loader from '../Components/Loader/Loader';
 
 const CreateDonationRequest = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpozila, setSelectedUpozila] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState('');
+    const [loading, setLoading] = useState(true)
     const [status, setStatus] = useState('')
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure()
@@ -23,12 +25,15 @@ const CreateDonationRequest = () => {
 
     useEffect(() => {
         axiosSecure.get('/get-user-status')
-            .then(res =>
+            .then(res => {
                 setStatus(res.data.status)
+                setLoading(false)
+            }
             ).catch(error => {
                 console.log(error);
             })
     }, [axiosSecure])
+
 
     const handleAddVolunteer = (e) => {
         e.preventDefault();
@@ -62,7 +67,9 @@ const CreateDonationRequest = () => {
                 console.log(error);
             });
     };
-
+    if (loading) {
+        return <Loader></Loader>
+    }
     return (
         <div className=" ">
             <div className="mb-6 text-center">
