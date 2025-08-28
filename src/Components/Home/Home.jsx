@@ -9,22 +9,22 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className='space-y-5'>
             {/* Banner */}
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-col-reverse lg:flex-row justify-between items-center'>
                 <div>
-                    <div className="text-start my-10">
-                        <h1 className="text-4xl font-bold text-primary">Be a Hero, Save Lives</h1>
-                        <p className="text-gray-700 mt-2 max-w-3xs text-base sm:text-lg">
+                    <div className="text-center lg:text-start my-5">
+                        <h1 className="text-5xl font-bold text-primary">Be a Hero, Save Lives</h1>
+                        <p className="text-gray-700 mt-2 max-w-sm text-base sm:text-lg">
                             Join our life-saving mission by becoming a blood donor or find the help you need right when it matters most.
                         </p>
                     </div>
-                    <div className='flex gap-4'>
+                    <div className='flex gap-4 justify-center items-center md:justify-start'>
                         <Link to='/register'><button className='btn btn-primary'>Join As Donor</button></Link>
                         <Link to='/'><button className='btn btn-primary'>Search Page</button></Link>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/2 max-w-md">
+                <div className="w-full max-w-md">
                     <Lottie animationData={bloodAnimation} loop={true} />
                 </div>
             </div>

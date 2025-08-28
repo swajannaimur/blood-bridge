@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../Hooks/axiosPublic';
 import { useParams } from 'react-router';
+import Loader from '../../Components/Loader/Loader';
 
 const BlogsDetails = () => {
     const { id } = useParams()
     const axiosPublic = useAxiosPublic()
     const [blog, setBlog] = useState('')
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         axiosPublic.get(`all-blogs/${id}`)
             .then(res => {
                 setBlog(res.data)
+                setLoading(false)
             }).catch(error => {
                 console.log(error);
 
             })
-    }, [])
+    }, [axiosPublic, id])
+
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-10">

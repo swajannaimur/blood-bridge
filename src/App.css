@@ -16,8 +16,13 @@ h2 {
     name: "light";
     default: true;
     --color-primary: #E63946;
-    --color-secondary: #457B9D;
+    --color-secondary: #457b9d;
     --color-background: #F8F9FA;
     --color-textColor: #2C2C2C;
+}
+
+.active{
+    background-color: white;
+    color: #E63946
 }
 

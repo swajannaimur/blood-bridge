@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../Hooks/axiosPublic';
 import SingleBlog from './SingleBlog';
+import Loader from '../../Components/Loader/Loader';
 
 const AllBlogs = () => {
     const [blogs, setBlogs] = useState([])
+    const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic()
-    
+
     useEffect(() => {
         axiosPublic.get('/all-blogs')
             .then(res => {
                 setBlogs(res.data)
+                setLoading(false)
             }).catch(error => {
                 console.log(error);
 
             })
-    }, [])
-
+    }, [axiosPublic])
+    
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className='min-h-screen'>

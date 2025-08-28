@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className="bg-primary text-white">
             <footer className="max-w-screen-xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                
+
                 {/* Left */}
                 <div className="flex items-center justify-center md:justify-start gap-2">
                     <img

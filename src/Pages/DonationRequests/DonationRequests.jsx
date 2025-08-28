@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../Hooks/axiosPublic';
 import SingleRequest from './SingleRequest';
+import Loader from '../../Components/Loader/Loader';
 
 const DonationRequests = () => {
     const axiosPublic = useAxiosPublic()
     const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axiosPublic('pending-requests').then(res => {
             setPosts(res.data)
+            setLoading(false)
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [axiosPublic])
+    if (loading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className='min-h-screen'>
