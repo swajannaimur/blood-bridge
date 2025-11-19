@@ -21,9 +21,9 @@ const FeatureSection = () => {
     ];
 
     return (
-        <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className=" py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto text-center mb-10">
-                <h2 className="text-3xl font-bold text-primary">Why Choose Our Platform?</h2>
+                <h2 className="text-3xl font-bold text-primary">Why Choose Blood Bridge?</h2>
                 <p className="mt-2 text-gray-600 text-sm sm:text-base">
                     We make it easier and safer to donate and receive blood when it matters the most.
                 </p>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../Hooks/axiosPublic';
 import SingleRequest from './SingleRequest';
 import Loader from '../../Components/Loader/Loader';
+import { IoLocationOutline } from 'react-icons/io5';
+import { IoMdTime } from 'react-icons/io';
+import { Link } from 'react-router';
 
 const DonationRequests = () => {
     const axiosPublic = useAxiosPublic()
@@ -21,11 +24,11 @@ const DonationRequests = () => {
     }
 
     return (
-        <div className='min-h-screen'>
-            <div className="my-10 text-center">
-                <h2 className="text-3xl font-bold text-primary">Pending Donation Requests</h2>
-                <p className="max-w-2xl mx-auto text-gray-700 mt-2 text-sm sm:text-base">
-                    Below is a list of all blood donation requests that are currently pending. Review the details and take necessary actions to ensure timely support for those in need.
+        <div className='min-h-screen max-w-6xl mx-auto'>
+            <div className="my-16 text-start">
+                <h2 className="text-4xl font-extrabold">Current Blood Donation Needs</h2>
+                <p className=" text-gray-700 mt-2 text-sm sm:text-base">
+                    Find a request near you and help save a life.
                 </p>
             </div>
 
@@ -33,31 +36,52 @@ const DonationRequests = () => {
                 {posts.length === 0 ? (
                     <p className='text-center font-semibold text-secondary text-2xl '>There is no pending requests have been found</p>
                 ) : (
-                    <div className="overflow-x-auto p-4">
-                        <table className="min-w-full border border-gray-300 rounded-lg shadow-md text-sm sm:text-base">
-                            <thead className="bg-secondary text-white">
-                                <tr className="text-left">
-
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Recipient Name</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Recipient Location</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Donation Date</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Donation Time</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Blood Group</th>
-                                    <th className="border border-gray-300 px-2 sm:px-4 py-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    posts.map((post) => (
-                                        <SingleRequest
-                                            key={post._id}
-                                            post={post}
-                                        />
-                                    ))
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                    <>
+                        <div className='grid grid-cols-3 '>
+                            {
+                                posts.map((post) => (
+                                    <div key={post._id} className="card w-[350px] bg-base-100 shadow-sm">
+                                        <div className="card-body">
+                                            <div className="flex justify-between">
+                                                <h2 className="text-2xl font-bold"> {post.recipientName}</h2>
+                                                <span className="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary text-lg font-bold rounded-full">
+                                                    {post.bloodGroup}
+                                                </span>
+                                            </div>
+                                            <ul className="mt-6 flex flex-col gap-2 text-[16px]">
+                                                <li>
+                                                    <div className='flex items-center gap-3'>
+                                                        <div className='text-primary'>
+                                                            <IoLocationOutline size={20} />
+                                                        </div>
+                                                        <div>
+                                                            <h2>{post.district}, {post.upozila}</h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className='flex items-center gap-3'>
+                                                        <div className='text-primary'>
+                                                            <IoMdTime size={20} />
+                                                        </div>
+                                                        <div>
+                                                            <h2>{post.donationDate}, {post.donationTime}</h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div className="mt-6">
+                                              <Link to={`/donation-requests/${post._id}`}>
+                                                <button className="btn btn-primary btn-block">View Details</button>
+                                              </Link>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </>
                 )}
             </div>
 

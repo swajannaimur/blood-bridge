@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div className='space-y-5'>
             {/* Banner */}
-            <div className='flex flex-col-reverse lg:flex-row justify-between items-center'>
+            <div className='flex flex-col-reverse lg:flex-row justify-between items-center px-5'>
                 <div>
                     <div className="text-center lg:text-start my-5">
                         <h1 className="text-5xl font-bold text-primary">Be a Hero, Save Lives</h1>
@@ -35,7 +35,7 @@ const Home = () => {
             </div>
 
             {/* Contact Us */}
-            <div className=''>
+            <div className='bg-white my-4'>
                 <ContactForm />
             </div>
         </div>

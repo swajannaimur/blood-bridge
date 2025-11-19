@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useAxiosSecure from '../../Hooks/axiosSecure';
 import Swal from 'sweetalert2';
 import { MdOutlineDelete } from 'react-icons/md';

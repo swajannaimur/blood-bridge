@@ -127,7 +127,7 @@ const Header = () => {
         // </div>
 
         <div className='sticky top-0 z-50 shadow-sm'>
-            <div className='max-w-11/12 mx-auto px-4'>
+            <div className='max-w-7xl mx-auto px-4'>
                 <div className="navbar bg-base-100 ">
                     <div className="flex-1">
                         <Link to='/' className='flex items-center gap-2'>
@@ -136,7 +136,7 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className="flex-none">
-                        <ul className="menu menu-horizontal px-1 space-x-2">
+                        <ul className="menu menu-horizontal px-1 space-x-2  items-center">
                             {links}
                             <div className="hidden lg:flex lg:justify-end lg:items-center space-x-2">
                                 {user ? (
