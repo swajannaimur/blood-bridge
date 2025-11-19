@@ -15,14 +15,14 @@ h2 {
 @plugin "daisyui/theme" {
     name: "light";
     default: true;
-    --color-primary: #E63946;
+    --color-primary: #e53734;
     --color-secondary: #457b9d;
     --color-background: #F8F9FA;
     --color-textColor: #2C2C2C;
 }
 
 .active{
-    background-color: #457b9d;
+    background-color: #e53734;
     color: white
 }
 
