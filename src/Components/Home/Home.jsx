@@ -35,7 +35,7 @@ const Home = () => {
             </div>
 
             {/* Contact Us */}
-            <div className='bg-white my-4'>
+            <div className=' my-4'>
                 <ContactForm />
             </div>
         </div>

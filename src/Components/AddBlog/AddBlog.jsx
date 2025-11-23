@@ -1,13 +1,14 @@
 import JoditEditor from 'jodit-react';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import useAxiosSecure from '../../Hooks/axiosSecure';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Contexts/AuthContext';
 
 const AddBlog = () => {
     const editor = useRef(null);
     const [content, setContent] = useState('');
     const axiosSecure = useAxiosSecure()
-
+    const { user } = useContext(AuthContext)
     const handleAddBlog = e => {
         e.preventDefault()
 
@@ -19,7 +20,11 @@ const AddBlog = () => {
             title,
             thumbnail,
             content,
-            status: 'draft'
+            status: 'publish',
+            userId: user?.uid || '',       // user's ID
+            userName: user?.displayName || '', // user's name
+            userEmail: user?.email || '',      // user's email
+            role: 'author'
         }
 
         axiosSecure.post('/add-blog', blogData)

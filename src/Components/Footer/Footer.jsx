@@ -5,38 +5,47 @@ import { Link } from 'react-router';
 
 const Footer = () => {
     return (
-        <div className="bg-primary text-white">
-            <footer className="max-w-screen-xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+        <div className="bg-white text-[#6c7381] shadow-sm border-t border-gray-200">
+  <footer className="max-w-screen-xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
 
-                {/* Left */}
-                <div className="flex items-center justify-center md:justify-start gap-2">
-                    <img
-                        src="https://img.icons8.com/?size=100&id=vurh7-um5eMM&format=png&color=FFFFFF"
-                        alt="logo"
-                        className="w-10"
-                    />
-                    <span className="font-semibold text-lg">Blood Bridge</span>
-                </div>
+    {/* Left */}
+    <p className="text-sm font-medium tracking-wide">
+      © {new Date().getFullYear()} — All Rights Reserved
+    </p>
 
-                {/* Center */}
-                <p className="text-sm font-medium">
-                    © {new Date().getFullYear()} - All rights reserved
-                </p>
+    {/* Right - Social Icons */}
+    <div className="flex gap-5">
+      <Link
+        to="https://www.facebook.com/"
+        target="_blank"
+        aria-label="Facebook"
+        className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200"
+      >
+        <FaFacebookF size={18} className="text-[#3b5998]" />
+      </Link>
 
-                {/* Right (Social Links) */}
-                <div className="flex gap-4 justify-center md:justify-end">
-                    <Link to="https://www.facebook.com/" target="_blank" aria-label="Facebook">
-                        <FaFacebookF size={20} />
-                    </Link>
-                    <Link to="https://www.instagram.com/" target="_blank" aria-label="Instagram">
-                        <FaInstagram size={20} />
-                    </Link>
-                    <Link to="https://www.github.com/" target="_blank" aria-label="GitHub">
-                        <IoLogoGithub size={20} />
-                    </Link>
-                </div>
-            </footer>
-        </div>
+      <Link
+        to="https://www.instagram.com/"
+        target="_blank"
+        aria-label="Instagram"
+        className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200"
+      >
+        <FaInstagram size={18} className="text-[#E1306C]" />
+      </Link>
+
+      <Link
+        to="https://www.github.com/"
+        target="_blank"
+        aria-label="GitHub"
+        className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200"
+      >
+        <IoLogoGithub size={18} className="text-black" />
+      </Link>
+    </div>
+
+  </footer>
+</div>
+
     );
 };
 

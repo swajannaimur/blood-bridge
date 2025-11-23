@@ -25,17 +25,17 @@ const BlogsDetails = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-10">
-            <h1 className="text-4xl font-bold text-primary mb-4">{blog.title}</h1>
-            {blog.image && (
+        <div className="max-w-4xl mx-auto px-4 ">
+            <h1 className="text-4xl font-bold text-primary m-10 text-center">{blog.title}</h1>
+            {blog.thumbnail && (
                 <img
-                    src={blog.image}
+                    src={blog.thumbnail}
                     alt={blog.title}
                     className="w-full h-auto rounded-lg mb-6"
                 />
             )}
             <div
-                className="prose lg:prose-lg max-w-none"
+                className="prose lg:prose-lg max-w-3xl mx-auto"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
             />
         </div>

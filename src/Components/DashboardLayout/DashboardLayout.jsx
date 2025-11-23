@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import DashboardSidebar from '../DashboardSIdebar/DashboardSIdebar';
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext);
+
 
   return (
     <div className="drawer lg:drawer-open min-h-screen">

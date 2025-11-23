@@ -25,22 +25,22 @@ const DonationRequests = () => {
 
     return (
         <div className='min-h-screen max-w-6xl mx-auto'>
-            <div className="my-16 text-start">
+            <div className="my-12 text-start">
                 <h2 className="text-4xl font-extrabold">Current Blood Donation Needs</h2>
                 <p className=" text-gray-700 mt-2 text-sm sm:text-base">
                     Find a request near you and help save a life.
                 </p>
             </div>
 
-            <div className=''>
+            <div className='mb-10'>
                 {posts.length === 0 ? (
                     <p className='text-center font-semibold text-secondary text-2xl '>There is no pending requests have been found</p>
                 ) : (
                     <>
-                        <div className='grid grid-cols-3 '>
+                        <div className='grid grid-cols-3 space-y-8'>
                             {
                                 posts.map((post) => (
-                                    <div key={post._id} className="card w-[350px] bg-base-100 shadow-sm">
+                                    <div key={post._id} className="card w-[350px] h-[260px] bg-base-100 shadow-sm">
                                         <div className="card-body">
                                             <div className="flex justify-between">
                                                 <h2 className="text-2xl font-bold"> {post.recipientName}</h2>

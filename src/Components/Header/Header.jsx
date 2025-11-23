@@ -126,9 +126,9 @@ const Header = () => {
         //     </div>
         // </div>
 
-        <div className='sticky top-0 z-50 shadow-sm'>
-            <div className='max-w-7xl mx-auto px-4'>
-                <div className="navbar bg-base-100 ">
+        <div className='sticky top-0 z-50 shadow-sm  bg-base-100'>
+            <div className='max-w-7xl mx-auto px-4 '>
+                <div className="navbar ">
                     <div className="flex-1">
                         <Link to='/' className='flex items-center gap-2'>
                             <img src='https://img.icons8.com/?size=100&id=26115&format=png&color=000000' className='w-10' />
